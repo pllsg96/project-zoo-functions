@@ -3,8 +3,12 @@ const data = require('../data/zoo_data');
 const { employees } = data;
 
 function getRelatedEmployees(managerId) {
-  if (managerId.managers.length !== 0) {
-    return console.log('O id inserido não é de uma pessoa colaboradora gerente!');
+  if (managerId.managers !== 0) {
+    try {
+      throw new Error('O id inserido não é de uma pessoa colaboradora gerente!');
+    } catch (e) {
+      console.log(e);
+    }
   }
 }
 
@@ -16,6 +20,9 @@ function isManager(id) {
   return res;
 }
 
-console.log(isManager('9e7d4524-363c-416a-8759-8aa7e50c0992'));
+console.log(isManager('c5b83cb3-a451-49e2-ac45-ff3f54fbe7e1'));
+
+// id: 'c5b83cb3-a451-49e2-ac45-ff3f54fbe7e1',
+// firstName: 'Nigel',
 
 module.exports = { isManager, getRelatedEmployees };
