@@ -33,6 +33,6 @@ const handlerElephants = (param) => {
   return computeData(param, elephants);
 };
 
-// console.log(handlerElephants('count'));
+console.log(handlerElephants('availability'));
 
 module.exports = handlerElephants;
