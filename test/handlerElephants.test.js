@@ -3,6 +3,9 @@ const handlerElephants = require('../src/handlerElephants');
 describe('Testes da função HandlerElephants', () => {
   const elephantsName = handlerElephants('names');
   const elephantsAvailability = handlerElephants('availability');
+  test('Retorna undefined caso não seja passado nenhum parâmetro', () => {
+    expect(handlerElephants()).toBe(undefined);
+  });
   test('Retorna valor 4 ao receber parâmetro count', () => {
     expect(handlerElephants('count')).toBe(4);
   });
