@@ -1,7 +1,11 @@
 const data = require('../data/zoo_data');
 
 const { species } = data;
-const newNamenQty = {};
+
+function allAnimalsList(acc, value, index) {
+  const speciesQuantity = species.map((specie) => specie.residents.length);
+  return { ...acc, [value]: speciesQuantity[index] };
+}
 
 function checkingSex(animalSex, specieData) {
   const { residents } = specieData;
@@ -17,13 +21,11 @@ function checkingSex(animalSex, specieData) {
 function countAnimals(animal) {
   const speciesData = species.map((specie) => specie);
   const speciesName = species.map((specie) => specie.name);
-  const speciesQuantity = species.map((specie) => specie.residents.length);
   if (!animal) {
-    speciesName.map((specie, index) => newNamenQty[specie] = speciesQuantity[index]);
-    return newNamenQty;
+    return speciesName.reduce(allAnimalsList, {});
   }
   const specieData = speciesData.find((specie) => specie.name === animal.specie);
   return checkingSex(animal.sex, specieData);
 }
-console.log(countAnimals({ specie: 'penguins', sex: 'male' }));
+console.log(countAnimals());
 module.exports = countAnimals;
