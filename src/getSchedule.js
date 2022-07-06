@@ -1,8 +1,10 @@
 const { species, hours } = require('../data/zoo_data');
 const data = require('../data/zoo_data');
 
+const weekDays = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
 const weekDaysOn = ['Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
 const weekDaysOff = ['Monday'];
+const theAnimalList = species.map((specie) => specie.name);
 
 function animalsBySpecie(spec) {
   const abs = species.filter((specie) => specie.name === spec);
@@ -45,12 +47,20 @@ function exibAll() {
   return c;
 }
 
-function getSchedule(scheduleTarget) {
-  if (scheduleTarget) return animalsBySpecie(scheduleTarget);
-  if (!scheduleTarget) return exibAll();
+function checkingAll(scheduleTarget, checkIfIsAnimal, checkIfIsDay) {
+  if (!checkIfIsAnimal && !checkIfIsDay) return exibAll();
+  if (checkIfIsAnimal) return animalsBySpecie(scheduleTarget);
+  const x = exibAll()[scheduleTarget];
+  if (checkIfIsDay) return x;
 }
 
-console.log(getSchedule('elephants'));
-// animalsByDay('Tuesday');
+function getSchedule(scheduleTarget) {
+  const checkIfIsAnimal = theAnimalList.some((animal) => animal === scheduleTarget);
+  const checkIfIsDay = weekDays.some((day) => day === scheduleTarget);
+  if (!scheduleTarget) return exibAll();
+  return checkingAll(scheduleTarget, checkIfIsAnimal, checkIfIsDay);
+}
+
+console.log(getSchedule('Monday'));
 
 module.exports = getSchedule;
