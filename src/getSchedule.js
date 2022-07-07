@@ -52,9 +52,9 @@ function exibAll() {
 function checkingAll(scheduleTarget, checkIfIsAnimal, checkIfIsDay) {
   if (!checkIfIsAnimal && !checkIfIsDay) return exibAll();
   if (checkIfIsAnimal) return animalsBySpecie(scheduleTarget);
-  const x = [exibAll()];
+  const x = { [scheduleTarget]: exibAll()[scheduleTarget] };
   // const y = x.find((d) => Object.keys(d) === scheduleTarget);
-  if (checkIfIsDay) return Object.keys(x[0]);
+  if (checkIfIsDay) return x;
 }
 
 function getSchedule(scheduleTarget) {
