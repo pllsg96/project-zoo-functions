@@ -46,12 +46,15 @@ function exibAll() {
 
   return c;
 }
-
+// const x = exibAll()[scheduleTarget];
+//   const y = JSON.stringify(x);
+//   if (checkIfIsDay) return (`${scheduleTarget} : ${y}`);
 function checkingAll(scheduleTarget, checkIfIsAnimal, checkIfIsDay) {
   if (!checkIfIsAnimal && !checkIfIsDay) return exibAll();
   if (checkIfIsAnimal) return animalsBySpecie(scheduleTarget);
-  const x = exibAll()[scheduleTarget];
-  if (checkIfIsDay) return x;
+  const x = [exibAll()];
+  // const y = x.find((d) => Object.keys(d) === scheduleTarget);
+  if (checkIfIsDay) return Object.keys(x[0]);
 }
 
 function getSchedule(scheduleTarget) {
